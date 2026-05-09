@@ -14,8 +14,8 @@ echo "  ║  Tmux Warm Theme Installer           ║"
 echo "  ╚══════════════════════════════════════╝"
 echo ""
 
-# Backup existing config
-if [ -f "$TMUX_CONF" ]; then
+# Backup existing config (skip if already a symlink)
+if [ -f "$TMUX_CONF" ] && [ ! -L "$TMUX_CONF" ]; then
     BACKUP="$TMUX_CONF.bak.$(date +%Y%m%d%H%M%S)"
     echo "  [backup] $TMUX_CONF -> $BACKUP"
     cp "$TMUX_CONF" "$BACKUP"
@@ -24,6 +24,12 @@ fi
 # Symlink the config
 echo "  [link]  $SCRIPT_DIR/tmux.conf -> $TMUX_CONF"
 ln -sf "$SCRIPT_DIR/tmux.conf" "$TMUX_CONF"
+
+# Install TPM if not present
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo "  [tpm]   Installing Tmux Plugin Manager..."
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
 
 # Reload if tmux is running
 if tmux list-sessions &>/dev/null; then
@@ -37,5 +43,5 @@ else
 fi
 
 echo ""
-echo "  Tip: Press Ctrl+A then r inside tmux to reload anytime."
+echo "  Tip: Press F7 then r inside tmux to reload anytime."
 echo ""

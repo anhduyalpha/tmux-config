@@ -18,14 +18,28 @@ Script sẽ:
 
 | Phím | Chức năng |
 |------|-----------|
-| `Ctrl+A` | Prefix (thay Ctrl+B) |
-| `Ctrl+A + r` | Reload config |
-| `Ctrl+A + \|` | Split ngang |
-| `Ctrl+A + -` | Split dọc |
-| `Ctrl+A + h/j/k/l` | Di chuyển pane (vim) |
-| `Ctrl+A + H/J/K/L` | Resize pane |
+| `F7` | Prefix (thay Ctrl+B) |
+| `F7 + r` | Reload config |
+| `F7 + \|` | Split ngang |
+| `F7 + -` | Split dọc |
+| `F7 + h/j/k/l` | Di chuyển pane (vim) |
+| `F7 + H/J/K/L` | Resize pane |
 | `Alt+1..9` | Chuyển window |
-| `Ctrl+A + Enter` | Copy mode |
+| `F7 + c` | New window (same path) |
+| `F7 + Enter` | Copy mode (vi) |
+| `F7 + {` / `F7 + }` | Previous/Next window |
+
+## Plugins
+
+Sử dụng [TPM](https://github.com/tmux-plugins/tpm) (Tmux Plugin Manager):
+
+```bash
+# Cài TPM (nếu chưa có)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Cài plugins (trong tmux)
+F7 + I
+```
 
 ## Sửa đổi theme
 
@@ -48,7 +62,7 @@ text_normal="#d4c4a8"    # Text thường
 text_dim="#8a7a60"       # Text mờ
 ```
 
-Sau khi sửa: `Ctrl+A + r` trong tmux để reload.
+Sau khi sửa: `F7 + r` trong tmux để reload.
 
 ## Git Workflow
 
